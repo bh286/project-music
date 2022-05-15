@@ -8,18 +8,36 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    component: HomeView
+    component: HomeView,
+    redirect:'/music',
+    children:[
+      {
+        path:'music',
+        component:()=>import('../views/music/MusicView.vue')
+      },
+      {
+        path:'video',
+        component:()=>import('../views/video/VideoView.vue')
+      }
+    ]
   },
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
-  }
+    path: '/vediodetail',
+    name: 'Vediodetail',
+    component:()=>import('../views/video/videoDetail.vue')
+  },
+  {
+    path: '/musicdetail',
+    name: 'Musicdetail',
+    component:()=>import('../views/music/musicDetail.vue')
+  },
+  // {
+  //   path: '/poput',
+  //   name: 'Poput',
+  //   component:()=>import('../components/music/popup.vue')
+  // },
+  
 ]
-
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
